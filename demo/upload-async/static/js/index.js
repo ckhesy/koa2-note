@@ -47,13 +47,14 @@ function requestEvent( options ) {
     let formData = options.formData
     let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function() {
-
+      console.log(xhr.readyState)
       if ( xhr.readyState === 4 && xhr.status === 200 ) {
         options.success(JSON.parse(xhr.responseText))
       } 
     }
 
     xhr.upload.onprogress = function(evt) {
+
       let loaded = evt.loaded
       let tot = evt.total
       let per = Math.floor(100 * loaded / tot) 

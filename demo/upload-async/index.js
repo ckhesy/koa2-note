@@ -26,9 +26,14 @@ app.use(static(
 
 
 app.use( async ( ctx ) => {
-  if ( ctx.method === 'GET' ) {
+  if ( ctx.url === '/' && ctx.method === 'GET' ) {
     let title = 'upload pic async'
     await ctx.render('index', {
+      title,
+    })
+  }else if (ctx.url === '/test' && ctx.method === 'GET') {
+    let title = 'test pages'
+    await ctx.render('test', {
       title,
     })
   } else if ( ctx.url === '/api/picture/upload.json' && ctx.method === 'POST' ) {
